@@ -1,0 +1,299 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bury Me Deep Inside Your Heart</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+
+    background:
+    linear-gradient(
+        180deg,
+        #12070a 0%,
+        #1d0b11 40%,
+        #080808 100%
+    );
+
+    color:#f2f2f2;
+
+    font-family: Georgia, serif;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:40px 15px;
+}
+
+.card{
+    width:100%;
+    max-width:900px;
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:28px;
+
+    padding:40px;
+
+    backdrop-filter:blur(12px);
+
+    box-shadow:
+    0 0 40px rgba(0,0,0,.45);
+}
+
+.header-quote{
+    text-align:center;
+
+    font-size:.9rem;
+
+    letter-spacing:4px;
+
+    opacity:.6;
+
+    text-transform:uppercase;
+
+    margin-bottom:25px;
+}
+
+.gallery{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+
+    margin-bottom:35px;
+}
+
+.photo-frame{
+    width:250px;
+    height:250px;
+
+    overflow:hidden;
+
+    border-radius:18px;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    background:rgba(255,255,255,.03);
+
+    transition:.3s;
+}
+
+.photo-frame:hover{
+    transform:scale(1.02);
+}
+
+.photo-frame img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    filter:
+    grayscale(40%)
+    contrast(110%);
+}
+
+.message{
+    max-width:720px;
+
+    margin:auto;
+
+    line-height:1.9;
+
+    font-size:1.12rem;
+}
+
+.message p{
+    margin-bottom:22px;
+}
+
+.heart{
+    text-align:center;
+
+    font-size:1.8rem;
+
+    margin-top:10px;
+}
+
+.signature{
+    text-align:center;
+
+    margin-top:12px;
+
+    font-size:1.3rem;
+}
+
+.music-player{
+    margin-top:35px;
+
+    background:rgba(255,255,255,.03);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:18px;
+
+    padding:18px;
+}
+
+.music-title{
+    text-align:center;
+
+    margin-bottom:12px;
+
+    opacity:.75;
+
+    letter-spacing:2px;
+
+    font-size:.9rem;
+}
+
+audio{
+    width:100%;
+}
+
+@media(max-width:700px){
+
+    .photo-frame{
+        width:180px;
+        height:180px;
+    }
+
+    .message{
+        font-size:1rem;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <div class="header-quote">
+        Por favor, BURY ME DEEP INSIDE YOUR HEART
+    </div>
+
+    <div class="gallery">
+
+        <div class="photo-frame">
+            <img src="foto1.jpg" alt="Foto 1">
+        </div>
+
+        <div class="photo-frame">
+            <img src="foto2.jpg" alt="Foto 2">
+        </div>
+
+    </div>
+
+    <div class="message">
+
+        <p>
+            Te lobo neguinha, conta comigo com o que precisar e quando precisar.
+            Posso ter meus problemas mas sempre gosto de me importar com os seus também.
+        </p>
+
+        <p>
+            Não sou bom demonstrando e sempre faço brincadeira com tudo,
+            mas com você eu tento, de verdade, porque sinto conexão.
+        </p>
+
+        <p>
+            Mesmo com meus problemas e os seus juntos eu sinto vontade de continuar,
+            é o único remédio que tá me fazendo me sentir vivo.
+        </p>
+
+        <p>
+            Não importa se eu for pra te ver 15 minutos e ter que esperar ônibus
+            por uma hora ou mais e ter que recusar Corote pra doidinho do centro,
+            porque eu sei que vai valer a pena.
+        </p>
+
+        <p>
+            Então por mais que nós não estejamos 100% nem de longe,
+            nem na visão de uma idosa caquética,
+            eu estou tentando e quero tentar quantas vezes for preciso, ok?
+        </p>
+
+        <p>
+            E eu também reconheço seu esforço pra sair de tudo isso.
+            Por mais que o quão cansada você esteja e pareça ser em vão,
+            eu reconheço e você é muito forte por sustentar isso,
+            minha princesa, seja de qual forma for.
+        </p>
+
+    </div>
+
+    <div class="heart">🖤</div>
+
+    <div class="signature">
+        Mwah
+    </div>
+
+    <div class="music-player">
+
+        <div class="music-title">
+            ♫ BURY ME DEEP INSIDE YOUR HEART • HIM
+        </div>
+
+        <audio id="music" controls autoplay>
+            <source src="Bury Me Deep Inside Your Heart.mp3" type="audio/mpeg">
+        </audio>
+
+    </div>
+
+</div>
+
+<script>
+
+const music = document.getElementById("music");
+
+/* 3:58 */
+const START_TIME = 238;
+
+music.addEventListener("loadedmetadata", () => {
+    music.currentTime = START_TIME;
+});
+
+/* tenta iniciar em 3:58 */
+window.addEventListener("load", () => {
+
+    music.currentTime = START_TIME;
+
+    const promise = music.play();
+
+    if(promise !== undefined){
+        promise.catch(() => {});
+    }
+
+});
+
+/* volta para 3:58 quando chegar ao final */
+music.addEventListener("timeupdate", () => {
+
+    if(
+        music.duration &&
+        music.currentTime >= music.duration - 0.2
+    ){
+        music.currentTime = START_TIME;
+        music.play();
+    }
+
+});
+
+</script>
+
+</body>
+</html>
