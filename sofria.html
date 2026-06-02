@@ -36,13 +36,52 @@ body{
     overflow-x:hidden;
 }
 
+/* ===== ENTRADA ===== */
+#intro{
+    position:fixed;
+    inset:0;
+    background:radial-gradient(circle at center, #2a0008, #000);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    flex-direction:column;
+    transition:1s;
+}
+
+#intro h1{
+    color:#ff3b3b;
+    font-size:22px;
+    letter-spacing:4px;
+    margin-bottom:25px;
+    text-shadow:0 0 20px #ff0000;
+}
+
+#enterBtn{
+    padding:15px 35px;
+    font-size:16px;
+    border-radius:10px;
+    border:1px solid rgba(255,255,255,.2);
+    background:linear-gradient(145deg, #3a0000, #1a0000);
+    color:#fff;
+    cursor:pointer;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    box-shadow:0 0 25px rgba(255,0,0,.3);
+    transition:.3s;
+}
+
+#enterBtn:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 40px rgba(255,0,0,.5);
+}
+
 /* morcegos decorativos */
 .bats{
     position:fixed;
     inset:0;
     pointer-events:none;
     z-index:0;
-    overflow:hidden;
 }
 
 .bats span{
@@ -82,6 +121,15 @@ body{
 
     position:relative;
     z-index:1;
+
+    opacity:0;
+    transform:translateY(20px);
+    transition:1s;
+}
+
+.card.show{
+    opacity:1;
+    transform:translateY(0);
 }
 
 .header-quote{
@@ -179,6 +227,12 @@ audio{
 
 <body>
 
+<!-- ENTRADA -->
+<div id="intro">
+    </h1>🫀</h1>
+    <button id="enterBtn">ENTRAR</button>
+</div>
+
 <div class="bats">
     <span>🦇</span>
     <span>🦇</span>
@@ -187,7 +241,7 @@ audio{
     <span>🦇</span>
 </div>
 
-<div class="card">
+<div class="card" id="card">
 
     <div class="header-quote">
         BURY ME DEEP INSIDE YOUR HEART
@@ -220,7 +274,6 @@ audio{
     </div>
 
     <div class="heart">🖤</div>
-
     <div class="signature">Mwah</div>
 
     <div class="music-player">
@@ -229,7 +282,7 @@ audio{
             ♫ BURY ME DEEP INSIDE YOUR HEART • HIM
         </div>
 
-        <audio id="music" controls autoplay>
+        <audio id="music">
             <source src="Bury Me Deep Inside Your Heart - HIM.mp3" type="audio/mpeg">
         </audio>
 
@@ -240,20 +293,28 @@ audio{
 <script>
 
 const music = document.getElementById("music");
+const intro = document.getElementById("intro");
+const card = document.getElementById("card");
+
 const START_TIME = 238;
 
-/* tenta iniciar em 3:58 */
-window.addEventListener("load", () => {
-    music.currentTime = START_TIME;
-    const promise = music.play();
-    if(promise !== undefined){
-        promise.catch(() => {});
-    }
+document.getElementById("enterBtn").addEventListener("click", async () => {
+
+    intro.style.opacity = "0";
+    setTimeout(() => intro.style.display = "none", 1000);
+
+    card.classList.add("show");
+
+    try {
+        music.currentTime = START_TIME;
+        await music.play();
+    } catch (e) {}
+
 });
 
-/* mantém looping a partir de 3:58 */
+/* loop a partir de 3:58 */
 music.addEventListener("timeupdate", () => {
-    if(music.duration && music.currentTime >= music.duration - 0.2){
+    if (music.duration && music.currentTime >= music.duration - 0.2) {
         music.currentTime = START_TIME;
         music.play();
     }
